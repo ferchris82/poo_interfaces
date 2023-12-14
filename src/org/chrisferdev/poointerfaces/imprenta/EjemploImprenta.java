@@ -1,8 +1,9 @@
 package org.chrisferdev.poointerfaces.imprenta;
 
 import org.chrisferdev.poointerfaces.imprenta.modelo.*;
-
 import static org.chrisferdev.poointerfaces.imprenta.modelo.Genero.*;
+import static org.chrisferdev.poointerfaces.imprenta.modelo.Imprimible.*;
+
 
 public class EjemploImprenta {
     public static void main(String[] args) {
@@ -26,12 +27,20 @@ public class EjemploImprenta {
 
         Informe informe = new Informe(new Persona("Martin", "Fowler"),
                 new Persona("James", "Gosling"), "Estudio sobre microservicios");
+
         imprimir(cv);
         imprimir(informe);
         imprimir(libro);
+
+        imprimir(new Imprimible() {
+            @Override
+            public String imprimir() {
+                return "Hola que tal, imprimiendo un objeto genérico de una clase anónima!";
+            }
+        });
+
+        System.out.println(TEXTO_DEFECTO);
     }
 
-    public static void imprimir(Imprimible imprimible) {
-        System.out.println(imprimible.imprimir());
-    }
+
 }
